@@ -1,6 +1,6 @@
 const gameBoard = (() => {
   const board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  
+
   return { board };
 })();
 
@@ -17,10 +17,15 @@ const winCondition = [
   (3, 5, 7),
 ];
 
-const Player = (name, side) => {
-  const getName = () => name;
-  const getSide = () => side;
-};
+const player = (
+  [player, whichPlayer],
+  [name, playerName],
+  [token, playerToken]
+) => ({
+  [player]: whichPlayer,
+  [name]: playerName,
+  [token]: playerToken,
+});
 
-const displayController = () => {};
-
+console.table(player(["Player", "Player 1"], ["Name", "Clowdy"], ["Token", "X"]));
+console.log();
