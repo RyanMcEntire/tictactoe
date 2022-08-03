@@ -6,26 +6,20 @@ const gameBoard = (() => {
 
 console.log(gameBoard.board);
 
-const winCondition = [
-  (1, 2, 3),
-  (4, 5, 6),
-  (7, 8, 9),
-  (1, 4, 7),
-  (2, 5, 8),
-  (3, 6, 9),
-  (1, 5, 9),
-  (3, 5, 7),
-];
+const Player = (name, token) => {
+  const getName = () => name;
+  const getToken = () => token;
+  return { getName, getToken };
+};
 
-const player = (
-  [player, whichPlayer],
-  [name, playerName],
-  [token, playerToken]
-) => ({
-  [player]: whichPlayer,
-  [name]: playerName,
-  [token]: playerToken,
-});
+const player1 = Player("Jim", "X");
 
-console.table(player(["Player", "Player 1"], ["Name", "Clowdy"], ["Token", "X"]));
-console.log();
+const player2 = Player("Jeff", "O");
+
+const player3 = Player({
+  name: prompt("name?"),
+  token: prompt("token?")
+})
+
+console.log(player2.getName(), player2.getToken());
+console.log(player3.getName())
