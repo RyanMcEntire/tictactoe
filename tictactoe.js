@@ -1,25 +1,33 @@
 const gameBoard = (() => {
-  const board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+  const board = ["", "", "", "", "", "", "", "", ""];
   return { board };
 })();
 
 console.log(gameBoard.board);
 
-const Player = (name, token) => {
-  const getName = () => name;
-  const getToken = () => token;
-  return { getName, getToken };
-};
+const gameController = (() => {
+  const Player = (name, token) => {
+    return { name, token };
+  };
 
-const player1 = Player("Jim", "X");
+  const player1 = Player("Player 1", "X");
+  const player2 = Player("Player 2", "O");
 
-const player2 = Player("Jeff", "O");
+  // Starting conditions
+  let playSpots = 9;
+  let playersTurn = player1;
+  let win = false;
+  let winner = null;
+  let fiveTurnsPlayed = false;
 
-const player3 = Player({
-  name: prompt("name?"),
-  token: prompt("token?")
-})
-
-console.log(player2.getName(), player2.getToken());
-console.log(player3.getName())
+  const winCondition = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7],
+  ];
+})();
