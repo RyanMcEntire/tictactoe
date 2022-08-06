@@ -1,0 +1,44 @@
+body {
+  background-color: #6d597a;
+  justify-content: center;
+}
+
+.gameBoard {
+  background-color: #b56576;
+  height: 40rem;
+  width: 40rem;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 0.5rem;
+  border: 0.3rem solid #fcf6bd;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.square {
+  text-align: center;
+  background-color: #eaac8b;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: #355070;
+  font-size: 9rem;
+  box-shadow: 5px 5px 10px rgba(48, 48, 48, 0.418);
+}
+
+.square:hover {
+  cursor: pointer;
+}
+
+#box1 {
+  border-top-left-radius: 0.5rem;
+}
+#box3 {
+  border-top-right-radius: 0.5rem;
+}
+#box7 {
+  border-bottom-left-radius: 0.5rem;
+}
+#box9 {
+  border-bottom-right-radius: 0.5rem;
+}
