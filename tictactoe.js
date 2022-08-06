@@ -1,9 +1,6 @@
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   return { board };
-
-  
- /*  return { playerTurn }; */
 })();
 
 console.log(gameBoard.board);
@@ -34,17 +31,17 @@ const gameController = (() => {
     [3, 5, 7],
   ];
 
-    // clickable squares
-    const playSpace = document.querySelector(".gameBoard");
-    
-    playSpace.onclick = function (e) {
-      
-      let pickID = e.target.id;
-      let box = document.getElementById(pickID)
-      box.textContent = activePlayer.token
-      console.log(box)
-      console.log(player1.token)
-      console.log(pickID)
-    };
-  
+  // clickable squares
+  const playSpace = document.querySelector(".gameBoard");
+
+  playSpace.onclick = function (e) {
+    let pickID = e.target.id;
+    let box = document.getElementById(pickID);
+    gameBoard.board.splice(pickID, 1, activePlayer.token);
+    box.textContent = activePlayer.token;
+
+    console.log(player1.token);
+    console.log(pickID);
+    console.log(gameBoard.board);
+  };
 })();
