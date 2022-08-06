@@ -1,6 +1,16 @@
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   return { board };
+
+  const playerTurn = () => {
+    // clickable squares
+    const playSpace = document.querySelector(".gameBoard");
+    playSpace.onclick = function (e) {
+      let pick = e.target.id;
+    };
+    
+  };
+  return { playerTurn };
 })();
 
 console.log(gameBoard.board);
