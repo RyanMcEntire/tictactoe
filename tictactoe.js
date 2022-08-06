@@ -2,15 +2,8 @@ const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   return { board };
 
-  const playerTurn = () => {
-    // clickable squares
-    const playSpace = document.querySelector(".gameBoard");
-    playSpace.onclick = function (e) {
-      let pick = e.target.id;
-    };
-    
-  };
-  return { playerTurn };
+  
+ /*  return { playerTurn }; */
 })();
 
 console.log(gameBoard.board);
@@ -24,8 +17,8 @@ const gameController = (() => {
   const player2 = Player("Player 2", "O");
 
   // Starting conditions
-  let playSpots = 9;
-  let playersTurn = player1;
+  let totalTurns = 9;
+  let activePlayer = player1;
   let win = false;
   let winner = null;
   let fiveTurnsPlayed = false;
@@ -40,4 +33,18 @@ const gameController = (() => {
     [1, 5, 9],
     [3, 5, 7],
   ];
+
+    // clickable squares
+    const playSpace = document.querySelector(".gameBoard");
+    
+    playSpace.onclick = function (e) {
+      
+      let pickID = e.target.id;
+      let box = document.getElementById(pickID)
+      box.textContent = activePlayer.token
+      console.log(box)
+      console.log(player1.token)
+      console.log(pickID)
+    };
+  
 })();
