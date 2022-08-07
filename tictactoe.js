@@ -15,12 +15,13 @@ const gameController = (() => {
 
   // Starting conditions
   let totalTurns = 9;
+  let currentTurn = 0;
   let activePlayer = player1;
   let win = false;
   let winner = null;
-  let fiveTurnsPlayed = false;
+  let fiveTurnsPlayed = false; 
 
-  const winCondition = [
+  /*   const winCondition = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
@@ -29,7 +30,7 @@ const gameController = (() => {
     [3, 6, 9],
     [1, 5, 9],
     [3, 5, 7],
-  ];
+  ]; */
 
   const switchPlayer = () => {
     if (activePlayer == player1) {
@@ -42,15 +43,28 @@ const gameController = (() => {
   // clickable squares
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
-    let box = document.getElementById(pickID);
+    const box = document.getElementById(pickID);
     if (gameBoard.board[pickID] === "") {
       gameBoard.board.splice(pickID, 1, activePlayer.token);
       box.textContent = activePlayer.token;
+      currentTurn++;
+      if (currentTurn === totalTurns && win === false) {
+        gameOver(tie);
+      }
       switchPlayer();
     }
 
-    console.log(player1.token);
-    console.log(pickID);
     console.log(gameBoard.board);
+  };
+
+  const gameOver = (results) => {
+    if (results === tie) {
+      tie();
+    }
+  };
+
+  const tie = () => {
+    const results = document.querySelector(".gameResults");
+    results.textContent = "tie!";
   };
 })();

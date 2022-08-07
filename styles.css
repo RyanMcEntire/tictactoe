@@ -3,26 +3,42 @@ body {
   justify-content: center;
 }
 
+h1 {
+  font-family: "Hahmlet", serif;
+  text-align: center;
+  font-size: 10rem;
+  color: #eaac8b;
+  margin: 1rem;
+  text-shadow: 5px 5px #fcf6bd, 10px 10px #b56576, 15px 15px #355070;
+}
+
+h2 {
+  text-align: center;
+  color: #355070;
+  font-size: 2rem;
+}
 .gameBoard {
   background-color: #b56576;
   height: 40rem;
   width: 40rem;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 0rem;
   padding: 0.5rem;
   border: 0.3rem solid #fcf6bd;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .square {
   text-align: center;
+  font-family: "Hahmlet", serif;
   background-color: #eaac8b;
   padding: 0.5rem;
   margin: 0.5rem;
   color: #355070;
-  font-size: 9rem;
+  font-size: 7rem;
   box-shadow: 5px 5px 10px rgba(48, 48, 48, 0.418);
 }
 
@@ -30,15 +46,15 @@ body {
   cursor: pointer;
 }
 
-#box1 {
+.top-left {
   border-top-left-radius: 0.5rem;
 }
-#box3 {
+.top-right {
   border-top-right-radius: 0.5rem;
 }
-#box7 {
+.bottom-left {
   border-bottom-left-radius: 0.5rem;
 }
-#box9 {
+.bottom-right {
   border-bottom-right-radius: 0.5rem;
 }
