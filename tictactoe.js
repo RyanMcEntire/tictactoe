@@ -31,14 +31,23 @@ const gameController = (() => {
     [3, 5, 7],
   ];
 
-  // clickable squares
+  const switchPlayer = () => {
+    if (activePlayer == player1) {
+      activePlayer = player2;
+    } else activePlayer = player1;
+  };
+
   const playSpace = document.querySelector(".gameBoard");
 
+  // clickable squares
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
     let box = document.getElementById(pickID);
-    gameBoard.board.splice(pickID, 1, activePlayer.token);
-    box.textContent = activePlayer.token;
+    if (gameBoard.board[pickID] === "") {
+      gameBoard.board.splice(pickID, 1, activePlayer.token);
+      box.textContent = activePlayer.token;
+      switchPlayer();
+    }
 
     console.log(player1.token);
     console.log(pickID);
