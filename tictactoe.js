@@ -13,14 +13,15 @@ const gameController = (() => {
   const player1 = Player("Player 1", "X");
   const player2 = Player("Player 2", "O");
 
+  const playSpace = document.querySelector(".gameBoard");
+  const results = document.querySelector(".gameResults");
+
   // Starting conditions
   let totalTurns = 9;
   let currentTurn = 0;
   let activePlayer = player1;
   let win = false;
-  let winner = null;
-  let fiveTurnsPlayed = false; 
-
+  let minToWin = 5;
   /*   const winCondition = [
     [1, 2, 3],
     [4, 5, 6],
@@ -38,7 +39,11 @@ const gameController = (() => {
     } else activePlayer = player1;
   };
 
-  const playSpace = document.querySelector(".gameBoard");
+  const winCheck = (player) => {
+    if (currentTurn >= minToWin) {
+      console.log(player);
+    }
+  };
 
   // clickable squares
   playSpace.onclick = function (e) {
@@ -48,6 +53,7 @@ const gameController = (() => {
       gameBoard.board.splice(pickID, 1, activePlayer.token);
       box.textContent = activePlayer.token;
       currentTurn++;
+      winCheck(activePlayer);
       if (currentTurn === totalTurns && win === false) {
         gameOver(tie);
       }
@@ -57,6 +63,7 @@ const gameController = (() => {
     console.log(gameBoard.board);
   };
 
+  // decides end game actions
   const gameOver = (results) => {
     if (results === tie) {
       tie();
@@ -64,7 +71,6 @@ const gameController = (() => {
   };
 
   const tie = () => {
-    const results = document.querySelector(".gameResults");
     results.textContent = "tie!";
   };
 })();
