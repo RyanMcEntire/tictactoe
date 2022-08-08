@@ -94,8 +94,8 @@ const gameController = (() => {
   };
 
   const win = () => {
-    results.textContent = `${activePlayer} wins!!!`;
-    console.log(`${activePlayer} wins!!!`);
+    results.textContent = `${activePlayer.name} wins!!!`;
+    console.log(`${activePlayer.name} wins!!!`);
   };
 
   const tie = () => {
