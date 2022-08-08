@@ -22,16 +22,6 @@ const gameController = (() => {
   let activePlayer = player1;
   let win = false;
   let minToWin = 5;
-  /*   const winCondition = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7],
-  ]; */
 
   const switchPlayer = () => {
     if (activePlayer == player1) {
@@ -39,13 +29,30 @@ const gameController = (() => {
     } else activePlayer = player1;
   };
 
-  const winCheck = (player) => {
+  const ableToWin = (player) => {
     if (currentTurn >= minToWin) {
-      console.log(player);
-    }
+      return true;
+    } else return false;
   };
 
-  // clickable squares
+  const winConditionCheck = (player) => {
+    let box = gameBoard.board;
+    let tok = player.token;
+    if (
+      (box[0] === tok && box[1] === tok && box[2] === tok) ||
+      (box[3] === tok && box[4] === tok && box[4] === tok) ||
+      (box[6] === tok && box[7] === tok && box[8] === tok) ||
+      (box[0] === tok && box[3] === tok && box[6] === tok) ||
+      (box[1] === tok && box[4] === tok && box[7] === tok) ||
+      (box[2] === tok && box[5] === tok && box[8] === tok) ||
+      (box[0] === tok && box[4] === tok && box[8] === tok) ||
+      (box[2] === tok && box[4] === tok && box[6] === tok)
+    ) {
+      return true;
+    } else return false;
+  };
+
+  // game play
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
     const box = document.getElementById(pickID);
@@ -53,7 +60,13 @@ const gameController = (() => {
       gameBoard.board.splice(pickID, 1, activePlayer.token);
       box.textContent = activePlayer.token;
       currentTurn++;
-      winCheck(activePlayer);
+      ableToWin(activePlayer);
+      if (ableToWin() === true) {
+        if (winConditionCheck(activePlayer) === true) {
+          gameOver(activePlayer);
+          win === true;
+        }
+      }
       if (currentTurn === totalTurns && win === false) {
         gameOver(tie);
       }
@@ -67,6 +80,8 @@ const gameController = (() => {
   const gameOver = (results) => {
     if (results === tie) {
       tie();
+    } else if (results === activePlayer) {
+      results.textContent = `${activePlayer} wins!!!`;
     }
   };
 
