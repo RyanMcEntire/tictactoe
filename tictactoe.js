@@ -20,7 +20,7 @@ const gameController = (() => {
   let totalTurns = 9;
   let currentTurn = 0;
   let activePlayer = player1;
-  let win = false;
+  let endGame = false;
   let minToWin = 5;
 
   const switchPlayer = () => {
@@ -48,14 +48,21 @@ const gameController = (() => {
       (box[0] === tok && box[4] === tok && box[8] === tok) ||
       (box[2] === tok && box[4] === tok && box[6] === tok)
     ) {
+      console.log("win is true");
       return true;
-    } else return false;
+    } else {
+      console.log("win is false");
+    }
+    return false;
   };
 
   // game play
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
     const box = document.getElementById(pickID);
+    if (endGame === true) {
+      return;
+    }
     if (gameBoard.board[pickID] === "") {
       gameBoard.board.splice(pickID, 1, activePlayer.token);
       box.textContent = activePlayer.token;
@@ -78,11 +85,17 @@ const gameController = (() => {
 
   // decides end game actions
   const gameOver = (results) => {
+    endGame = true;
     if (results === tie) {
       tie();
     } else if (results === activePlayer) {
-      results.textContent = `${activePlayer} wins!!!`;
+      win();
     }
+  };
+
+  const win = () => {
+    results.textContent = `${activePlayer} wins!!!`;
+    console.log(`${activePlayer} wins!!!`);
   };
 
   const tie = () => {
