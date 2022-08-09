@@ -15,6 +15,13 @@ const gameController = (() => {
 
   const playSpace = document.querySelector(".gameBoard");
   const results = document.querySelector(".gameResults");
+  const newGame = document.querySelector(".newGame");
+  const square = document.querySelectorAll(".square")
+  const popUp = document.getElementById("popUp");
+  
+  const startGameButton = document.getElementById("startGame");
+  const player1Input = document.getElementById("player1Name");
+  const player2Input = document.getElementById("player2Name");
 
   // Starting conditions
   let totalTurns = 9;
@@ -56,6 +63,36 @@ const gameController = (() => {
     return false;
   };
 
+  // pre game
+  newGame.onclick = function () {
+    popUp.style.display = "block";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == popUp) {
+      popUp.style.display = "none";
+    }
+  };
+
+  startGameButton.onclick = function () {
+    if (player1Input.value !== "") {
+    player1.name = player1Input.value;
+    }
+    if (player2Input.value !== "") {
+    player2.name = player2Input.value;
+    }
+    popUp.style.display = "none";
+    startGame();
+  };
+
+  const startGame = () => {
+    newGame.style.display = "none";
+    endGame = false;
+    for (const each of square) {
+      each.classList.add("square-hover");
+    }
+  };
+
   // game play
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
@@ -85,6 +122,9 @@ const gameController = (() => {
 
   // decides end game actions
   const gameOver = (results) => {
+    for (const each of square) {
+      each.classList.remove("square-hover");
+    }
     endGame = true;
     if (results === tie) {
       tie();

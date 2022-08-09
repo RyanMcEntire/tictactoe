@@ -42,8 +42,9 @@ h2 {
   box-shadow: 5px 5px 10px rgba(48, 48, 48, 0.418);
 }
 
-.square:hover {
+.square-hover:hover {
   cursor: pointer;
+  box-shadow: 1px 1px 10px #fcf6bd7c;
 }
 
 .top-left {
@@ -59,7 +60,7 @@ h2 {
   border-bottom-right-radius: 0.5rem;
 }
 
-.start-button {
+.newGame {
   text-align: center;
   justify-content: center;
   margin: auto;
@@ -74,8 +75,11 @@ h2 {
   border: #fcf6bd solid 0.3rem;
   border-radius: 0.5rem;
 }
+.newGame:hover {
+  cursor: pointer;
+}
 
-.modal {
+.popUp {
   display: none;
   position: fixed;
   z-index: 1;
@@ -84,13 +88,42 @@ h2 {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
+.popUpContent {
+  background-color: #eaac8b;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  gap: 0.3rem;
+  color: #355070;
+  font-family: "Hahmlet", serif;
+  width: 20rem;
+  border: #fcf6bd solid 0.3rem;
+  border-radius: 0.5rem;
+}
+
+input {
+  border: 1px solid #d89f81;
+  background-color: #f7cbb3;
+  border-radius: 3px;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-row: auto;
+  margin-top: 0.7rem;
+}
+
+.startGame {
+  text-align: center;
+  background-color: #355070;
+  color: #fcf6bd;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  cursor: pointer;
 }
