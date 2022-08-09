@@ -20,7 +20,7 @@ const gameController = (() => {
   let totalTurns = 9;
   let currentTurn = 0;
   let activePlayer = player1;
-  let endGame = false;
+  let endGame = true;
   let minToWin = 5;
 
   const switchPlayer = () => {
