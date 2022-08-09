@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const board = ["", "", "", "", "", "", "", "", ""];
+  const board = "";
   return { board };
 })();
 
@@ -16,19 +16,28 @@ const gameController = (() => {
   const playSpace = document.querySelector(".gameBoard");
   const results = document.querySelector(".gameResults");
   const newGame = document.querySelector(".newGame");
-  const square = document.querySelectorAll(".square")
+  const square = document.querySelectorAll(".square");
   const popUp = document.getElementById("popUp");
-  
   const startGameButton = document.getElementById("startGame");
   const player1Input = document.getElementById("player1Name");
   const player2Input = document.getElementById("player2Name");
+  const gameOverPopUp = document.getElementById("gameOver");
+  const playAgain = document.querySelector(".playAgain");
+  const gameOverNewGame = document.querySelector(".gameOverNewGame");
 
   // Starting conditions
-  let totalTurns = 9;
-  let currentTurn = 0;
-  let activePlayer = player1;
+  const totalTurns = 9;
+  const minToWin = 5;
   let endGame = true;
-  let minToWin = 5;
+
+  const initGame = () => {
+    currentTurn = 0;
+    activePlayer = player1;
+    gameBoard.board = ["", "", "", "", "", "", "", "", ""];
+    for (const each of square) {
+      each.textContent = "";
+    }
+  };
 
   const switchPlayer = () => {
     if (activePlayer == player1) {
@@ -55,10 +64,8 @@ const gameController = (() => {
       (box[0] === tok && box[4] === tok && box[8] === tok) ||
       (box[2] === tok && box[4] === tok && box[6] === tok)
     ) {
-      console.log("win is true");
       return true;
     } else {
-      console.log("win is false");
     }
     return false;
   };
@@ -76,16 +83,17 @@ const gameController = (() => {
 
   startGameButton.onclick = function () {
     if (player1Input.value !== "") {
-    player1.name = player1Input.value;
+      player1.name = player1Input.value;
     }
     if (player2Input.value !== "") {
-    player2.name = player2Input.value;
+      player2.name = player2Input.value;
     }
     popUp.style.display = "none";
     startGame();
   };
 
   const startGame = () => {
+    initGame();
     newGame.style.display = "none";
     endGame = false;
     for (const each of square) {
@@ -104,14 +112,15 @@ const gameController = (() => {
       gameBoard.board.splice(pickID, 1, activePlayer.token);
       box.textContent = activePlayer.token;
       currentTurn++;
+      console.log(currentTurn, totalTurns);
       ableToWin(activePlayer);
       if (ableToWin() === true) {
         if (winConditionCheck(activePlayer) === true) {
           gameOver(activePlayer);
-          win === true;
         }
       }
-      if (currentTurn === totalTurns && win === false) {
+      console.log();
+      if (currentTurn === totalTurns) {
         gameOver(tie);
       }
       switchPlayer();
@@ -125,6 +134,7 @@ const gameController = (() => {
     for (const each of square) {
       each.classList.remove("square-hover");
     }
+    gameOverPopUp.style.display = "block";
     endGame = true;
     if (results === tie) {
       tie();
@@ -140,5 +150,22 @@ const gameController = (() => {
 
   const tie = () => {
     results.textContent = "tie!";
+    console.log("tie!");
   };
+
+  // Post Game
+
+  playAgain.onclick = function () {
+    gameOverPopUp.style.display = "none";
+    initGame();
+    startGame();
+  };
+  gameOverNewGame.onclick = function () {
+    gameOverPopUp.style.display = "none";
+    initGame();
+    gameGame = true;
+    player1.name = "Player 1"
+    player2.name = "Player 2"
+    newGame.style.display = "block";
+  }
 })();

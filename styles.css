@@ -42,7 +42,9 @@ h2 {
   box-shadow: 5px 5px 10px rgba(48, 48, 48, 0.418);
 }
 
-.square-hover:hover {
+.square-hover:hover,
+.newGame:hover,
+.startGame:hover {
   cursor: pointer;
   box-shadow: 1px 1px 10px #fcf6bd7c;
 }
@@ -79,7 +81,8 @@ h2 {
   cursor: pointer;
 }
 
-.popUp {
+.popUp,
+.gameOver {
   display: none;
   position: fixed;
   z-index: 1;
@@ -91,7 +94,8 @@ h2 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.popUpContent {
+.popUpContent,
+.gameOverContent {
   background-color: #eaac8b;
   position: fixed;
   left: 0;
@@ -119,7 +123,9 @@ input {
   margin-top: 0.7rem;
 }
 
-.startGame {
+.startGame,
+.playAgain,
+.gameOverNewGame {
   text-align: center;
   background-color: #355070;
   color: #fcf6bd;
