@@ -56,7 +56,7 @@ const gameController = (() => {
     let tok = player.token;
     if (
       (box[0] === tok && box[1] === tok && box[2] === tok) ||
-      (box[3] === tok && box[4] === tok && box[4] === tok) ||
+      (box[3] === tok && box[4] === tok && box[5] === tok) ||
       (box[6] === tok && box[7] === tok && box[8] === tok) ||
       (box[0] === tok && box[3] === tok && box[6] === tok) ||
       (box[1] === tok && box[4] === tok && box[7] === tok) ||
