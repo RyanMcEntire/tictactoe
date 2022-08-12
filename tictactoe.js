@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const board = "";
+  const board = ["", "", "", "", "", "", "", "", ""];
   return { board };
 })();
 
@@ -28,7 +28,7 @@ const gameController = (() => {
   // Starting conditions
   const totalTurns = 9;
   const minToWin = 5;
-  let endGame = true;
+  let gameOff = true;
 
   const initGame = () => {
     currentTurn = 0;
@@ -45,7 +45,7 @@ const gameController = (() => {
     } else activePlayer = player1;
   };
 
-  const ableToWin = (player) => {
+  const ableToWin = () => {
     if (currentTurn >= minToWin) {
       return true;
     } else return false;
@@ -95,7 +95,7 @@ const gameController = (() => {
   const startGame = () => {
     initGame();
     newGame.style.display = "none";
-    endGame = false;
+    gameOff = false;
     for (const each of square) {
       each.classList.add("square-hover");
     }
@@ -105,7 +105,7 @@ const gameController = (() => {
   playSpace.onclick = function (e) {
     let pickID = e.target.id;
     const box = document.getElementById(pickID);
-    if (endGame === true) {
+    if (gameOff === true) {
       return;
     }
     if (gameBoard.board[pickID] === "") {
@@ -135,7 +135,7 @@ const gameController = (() => {
       each.classList.remove("square-hover");
     }
     gameOverPopUp.style.display = "block";
-    endGame = true;
+    gameOff = true;
     if (results === tie) {
       tie();
     } else if (results === activePlayer) {
